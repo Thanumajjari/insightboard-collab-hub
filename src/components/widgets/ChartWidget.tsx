@@ -12,6 +12,7 @@ interface ChartWidgetProps {
   config: {
     chartType: 'line' | 'bar' | 'pie';
     displayLegend: boolean;
+    [key: string]: any;
   };
 }
 

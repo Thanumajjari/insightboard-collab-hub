@@ -30,7 +30,13 @@ const WidgetDisplay = ({ widget, isLoading }: WidgetDisplayProps) => {
       case "metric":
         return <MetricWidget data={widget.data} />;
       case "chart":
-        return <ChartWidget data={widget.data} config={widget.config} />;
+        // Make sure chart config has the required properties
+        const chartConfig = {
+          chartType: (widget.config.chartType as 'line' | 'bar' | 'pie') || 'line',
+          displayLegend: !!widget.config.displayLegend,
+          ...widget.config
+        };
+        return <ChartWidget data={widget.data} config={chartConfig} />;
       case "table":
         return <TableWidget data={widget.data} config={widget.config} />;
       default:
